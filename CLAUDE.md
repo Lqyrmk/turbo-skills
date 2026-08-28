@@ -1,6 +1,12 @@
 # CLAUDE.md
 
-这个项目是 **turbo** —— 一个 Claude Code skill 的源码仓库。
+这个项目是 **turbo-skills** —— 一个 Claude Code skill 的源码仓库，目前只包含一个 **turbo** skill。
+
+## 命名约定
+
+- **仓库名 `turbo-skills`**：技能集合的容器，遵循 `<name>-skills` 惯例（如 `agent-skills`）。将来加新 skill 不用改仓库名。
+- **skill 名 `turbo`**：手动触发 `/turbo`。触发名由 `skills/<name>/` 目录名（装好后是 `~/.claude/skills/<name>/`）决定，frontmatter 的 `name` 需与之保持一致。
+- 项目名与触发名**解耦**：仓库叫 `turbo-skills` 不影响 `/turbo` 的触发。
 
 ## 项目用途
 
@@ -9,7 +15,7 @@ turbo 是一个语言无关的性能优化 skill：在保证代码可读的前�
 ## 目录结构
 
 ```
-turbo/
+turbo-skills/
 ├── CLAUDE.md              # 本项目文档（本文件）
 ├── README.md              # 对外说明 + 安装方法
 ├── install.sh             # 安装脚本：复制 skill 到用户级目录
