@@ -1,0 +1,12 @@
+# OS
+Thumbs.db
+.DS_Store
+
+# Editor
+.vscode/
+.idea/
+*.swp
+
+# Node / misc
+node_modules/
+*.log
