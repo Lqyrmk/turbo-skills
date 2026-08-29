@@ -1,0 +1,11 @@
+{
+  "$schema": "https://json.schemastore.org/claude-code-plugin-manifest.json",
+  "name": "turbo-skills",
+  "version": "0.1.0",
+  "description": "性能优化 + 性能算账：/turbo 优化代码运行效率并补三段式注释，/cost 量化严重性与成本。",
+  "author": {
+    "name": "Lqyrmk"
+  },
+  "repository": "https://github.com/Lqyrmk/turbo-skills",
+  "license": "MIT"
+}

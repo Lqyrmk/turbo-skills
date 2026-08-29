@@ -1,15 +1,23 @@
-# turbo ⚡
+# turbo-skills ⚡
 
-一个语言无关的 Claude Code skill：**优化代码运行性能，同时保证代码可读、注释讲得清"为什么快"**。
+一个 Claude Code **插件**，包含两个 skill：
 
-> 仓库 `turbo-skills` 是技能集合的容器（遵循 `<name>-skills` 惯例），当前只含这一个 skill。skill 名为 `turbo`，手动触发 `/turbo`。
+| skill | 命令 | 作用 |
+|---|---|---|
+| **turbo** | `/turbo` | 性能优化 + 可读注释（What / Why / Revisit 三段式） |
+| **cost** | `/cost` | 性能算账：量化严重性 / 必要性 / 成本 |
 
 ## 它做什么
 
-- 测量驱动的工作流：明确目标 → 基线 → 定位瓶颈 → 最小修复 → 验证 → 复测 → 补注释 → 汇报
-- 语言无关的优化手法目录（换数据结构、降低复杂度、缓存、批处理、移出循环…）
-- 专门给优化过的代码写可读注释：**What / Why / When to revisit** 三要素
-- 内置红线，阻止过早优化、微优化、用可读性换性能
+**turbo**
+- 测量驱动的工作流：目标 → 基线 → 定位瓶颈 → 隔离 → 修复 → 自审 → 验证 → 复测 → 补注释 → 汇报
+- 语言无关的优化手法目录；大文件热点走隔离模式，不原地改
+- 内置红线与自审关卡，阻止过早优化、微优化、用可读性换性能
+
+**cost**
+- 严重性分级（🔴 严重 / 🟠 中等 / 🟢 轻微）
+- 成本换算（每秒 CPU 占用、每日浪费、可感知程度）
+- 必要性结论（必须现在优化 / 建议 / 可缓）
 
 ## 安装
 
@@ -17,15 +25,15 @@
 bash install.sh
 ```
 
-把 `skills/turbo/` 复制到 `~/.claude/skills/turbo/`，之后所有项目可用。
+把插件装到 `~/.claude/skills/turbo-skills/`（skills-directory 插件，**重启 Claude Code 后自动加载**）。脚本会清理旧的单 skill 安装，避免 `/turbo` 命名冲突。
 
-> 若提示 `~/.claude/skills` 不存在，脚本会自动创建。卸载：删除 `~/.claude/skills/turbo/`。
+> 卸载：`rm -rf ~/.claude/skills/turbo-skills`
 
 ## 使用
 
-- **自动触发**：直接说"帮我把这段代码优化一下 / 让它更快"，turbo 会被自动拉起。
-- **手动触发**：`/turbo`。
+- 先 `/turbo` 优化 → 需要量化收益时再 `/cost`。
+- 两个 skill 也会在描述命中时自动触发（优化类 / 算账类）。
 
 ## 开发
 
-见 [CLAUDE.md](CLAUDE.md)。核心就一个文件：`skills/turbo/SKILL.md`。
+见 [CLAUDE.md](CLAUDE.md)。两个 skill 各自独立维护。
