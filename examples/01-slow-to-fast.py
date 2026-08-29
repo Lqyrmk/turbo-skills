@@ -16,9 +16,10 @@ def build_index_slow(ids, items):
     return index
 
 
-# ---- turbo 优化：换数据结构 + 注释 ----
-# items 按 id 预建哈希索引，查询 O(1)，整体从 O(n*m) 降到 O(n+m)。
-# When to revisit：如果 items 极小而 ids 极小时线性查找可能更快，但一般情况下哈希更优。
+# ---- turbo 优化：换数据结构 + 三段式注释 ----
+# What: 建 id → item 的哈希索引，供后续 O(1) 查询
+# Why:  dict 查找是 O(1)，避免循环内对 list 的 O(n*m) 扫描，整体降到 O(n+m)
+# Revisit: 若 items 和 ids 都很小，线性查找可能更快，可回退为朴素写法
 def build_index_fast(ids, items):
-    by_id = {it["id"]: it for it in items}  # 一次 O(m) 建索引
+    by_id = {it["id"]: it for it in items}
     return [by_id[i] for i in ids if i in by_id]
